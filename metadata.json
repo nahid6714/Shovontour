@@ -1,0 +1,6 @@
+{
+  "name": "Shovon Tour & Travel BD",
+  "description": "Premium Domestic & International Tour Packages, Indian Visa Assistance, Medical Travel & Corporate Tours in Bangladesh by Md. Tawhid Hossan Shovon.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
