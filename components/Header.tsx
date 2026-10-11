@@ -49,7 +49,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full max-w-full bg-[#10283B] text-white border-b border-white/10 shadow-md">
+    <header className="sticky top-0 z-40 w-full max-w-full bg-[#1E3540] text-white border-b border-white/10 shadow-md">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-[74px] flex items-center justify-between gap-2 sm:gap-3">
         {/* Zone 1: Exact Suitcase + SHOVON Tour & Travel BD Logo */}
         <BrandLogo />
