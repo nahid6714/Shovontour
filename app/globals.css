@@ -6,3 +6,21 @@ body {
   overflow-x: hidden;
 }
 
+@keyframes shovon-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-shovon-slider {
+  display: flex;
+  width: max-content;
+  animation: shovon-marquee 26s linear infinite;
+}
+
+.animate-shovon-slider:hover {
+  animation-play-state: paused;
+}

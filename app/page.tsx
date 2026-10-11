@@ -25,6 +25,7 @@ import {
 import { useApp } from '@/lib/app-context';
 import PackageCard from '@/components/PackageCard';
 import ResilientImage from '@/components/ResilientImage';
+import HeroBannerSlider from '@/components/HeroBannerSlider';
 import { GALLERY_ITEMS } from '@/lib/mock-data';
 
 export default function HomePage() {
@@ -57,154 +58,11 @@ export default function HomePage() {
 
   return (
     <div className="w-full max-w-full overflow-x-hidden bg-[#F4F8FB] space-y-8 sm:space-y-12 pb-14">
-      {/* SECTION A: EXACT SPLIT HERO BANNER MATCHING UPLOADED DESKTOP REFERENCE IMAGE */}
-      <section className="relative w-full overflow-hidden bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-full relative">
-          {/* LEFT PANEL — BANGLADESH TOURS */}
-          <div className="relative min-h-[360px] sm:min-h-[430px] lg:min-h-[470px] flex flex-col justify-center px-5 sm:px-10 lg:px-12 xl:px-16 py-10 overflow-hidden">
-            {/* Background Scenic Bangladesh Image */}
-            <div className="absolute inset-0">
-              <ResilientImage
-                src="/images/hero_bangladesh.jpg"
-                alt="বাংলাদেশ ট্যুর প্যাকেজ"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/90 via-[#0b2234]/65 to-transparent" />
-            </div>
-
-            {/* Red Rising Sun & White Airplane with Dashed Trail (Matching Screenshot Top-Right of Left Panel) */}
-            <div className="absolute top-6 right-8 sm:right-14 w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-[#EF174F] opacity-95 flex items-center justify-center pointer-events-none shadow-lg">
-              <Plane className="w-8 h-8 sm:w-10 sm:h-10 text-white -rotate-12 translate-x-1 -translate-y-1" />
-            </div>
-            <div className="hidden sm:block absolute top-28 right-28 w-24 border-t-2 border-dashed border-white/80 -rotate-[28deg] pointer-events-none" />
-
-            {/* Bottom-Left Colorful Curved Swooshes Matching Reference Image */}
-            <div className="absolute -bottom-16 -left-12 w-52 h-44 rounded-[100%] bg-[#EF174F] rotate-12 pointer-events-none" />
-            <div className="absolute -bottom-20 left-12 w-56 h-40 rounded-[100%] bg-[#F9C91D] -rotate-6 pointer-events-none" />
-            <div className="absolute -bottom-16 -left-16 w-40 h-32 rounded-[100%] bg-[#10283B] pointer-events-none" />
-
-            {/* Center Diagonal S-Curve Ribbon Overlap on Desktop */}
-            <div className="hidden lg:block absolute -top-10 -right-12 w-28 h-[130%] bg-[#F9C91D] rotate-[14deg] rounded-full opacity-95 pointer-events-none z-10" />
-            <div className="hidden lg:block absolute -bottom-12 -right-10 w-24 h-[75%] bg-[#16A6A6] rotate-[16deg] rounded-full opacity-95 pointer-events-none z-10" />
-            <div className="hidden lg:block absolute -top-10 -right-16 w-20 h-[130%] bg-white rotate-[14deg] rounded-full pointer-events-none z-10" />
-
-            <div className="relative z-20 space-y-3 sm:space-y-4 max-w-md">
-              {/* Top Tag with Bangladesh Green/Red Circle */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10283B]/90 border border-white/15 text-white text-xs font-bold shadow-sm">
-                <span className="w-3.5 h-3.5 rounded-full bg-emerald-600 flex items-center justify-center shrink-0">
-                  <span className="w-2 h-2 rounded-full bg-[#EF174F]" />
-                </span>
-                <span>
-                  {lang === 'bn' ? 'দেশ দেখুন, দেশ ঘুরুন' : 'Explore Beautiful Bangladesh'}
-                </span>
-              </div>
-
-              {/* Two-Tone Huge Heading: White “বাংলাদেশ” + Yellow “ট্যুর প্যাকেজ” */}
-              <h1 className="text-3xl sm:text-5xl xl:text-[54px] font-black leading-[1.12] tracking-tight drop-shadow-sm">
-                <span className="block text-white">
-                  {lang === 'bn' ? 'বাংলাদেশ' : 'Bangladesh'}
-                </span>
-                <span className="block text-[#F9C91D] mt-0.5">
-                  {lang === 'bn' ? 'ট্যুর প্যাকেজ' : 'Tour Packages'}
-                </span>
-              </h1>
-
-              <p className="text-xs sm:text-base text-white/95 font-medium leading-relaxed max-w-sm">
-                {lang === 'bn'
-                  ? 'প্রকৃতি, পাহাড়, সমুদ্র, নদী, ঐতিহ্য এবং আমাদের অসাধারণ বাংলাদেশ'
-                  : 'Nature, mountains, sea beaches, rivers, heritage and our extraordinary Bangladesh'}
-              </p>
-
-              {/* Yellow Pill Button with Dark Navy Text */}
-              <div className="pt-1.5">
-                <Link
-                  href="/tours/bangladesh"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#F9C91D] hover:bg-[#eab80e] text-[#10283B] font-extrabold text-xs sm:text-sm transition-transform hover:scale-[1.02] shadow-lg"
-                >
-                  <span>
-                    {lang === 'bn'
-                      ? 'বাংলাদেশ ট্যুর প্যাকেজ দেখুন'
-                      : 'Explore Bangladesh Packages'}
-                  </span>
-                  <ArrowRight className="w-4 h-4 shrink-0" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT PANEL — INTERNATIONAL TOURS */}
-          <div className="relative min-h-[360px] sm:min-h-[430px] lg:min-h-[470px] flex flex-col justify-center px-5 sm:px-10 lg:px-14 xl:px-16 py-10 overflow-hidden bg-gradient-to-r from-white via-[#F4F8FB] to-[#DCEEF8] border-t lg:border-t-0 border-slate-200">
-            {/* Right Half World Landmarks Collage Image */}
-            <div className="absolute inset-y-0 right-0 w-full sm:w-[68%]">
-              <ResilientImage
-                src="/images/hero_international.jpg"
-                alt="আন্তর্জাতিক ট্যুর প্যাকেজ"
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 sm:via-white/75 to-transparent" />
-            </div>
-
-            {/* Decorative Hot Air Balloons & Flying Airplane Matching Screenshot */}
-            <div className="hidden sm:flex absolute top-7 left-1/3 w-9 h-9 rounded-full bg-gradient-to-b from-[#EF174F] to-[#F9C91D] items-center justify-center shadow-md pointer-events-none">
-              <span className="w-2 h-2 rounded-xs bg-[#10283B] translate-y-4" />
-            </div>
-            <div className="hidden sm:flex absolute top-16 left-[26%] w-5 h-5 rounded-full bg-gradient-to-b from-[#16A6A6] to-[#F9C91D] opacity-85 pointer-events-none" />
-            <div className="hidden sm:flex absolute top-6 right-8 px-3 py-1.5 rounded-full bg-white/90 shadow-md items-center gap-1.5 pointer-events-none">
-              <Plane className="w-5 h-5 text-[#10283B] -rotate-12" />
-            </div>
-
-            {/* Bottom-Left Teal & Yellow Curved Accents */}
-            <div className="hidden lg:block absolute -bottom-12 -left-8 w-28 h-28 rounded-full bg-[#16A6A6]/90 pointer-events-none" />
-            <div className="hidden lg:block absolute -bottom-14 left-10 w-20 h-20 rounded-full bg-[#F9C91D] pointer-events-none" />
-
-            <div className="relative z-20 space-y-3 sm:space-y-4 max-w-md lg:pl-4">
-              {/* Dark Navy Pill Tag */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10283B] text-white text-xs font-bold shadow-sm">
-                <span className="w-3.5 h-3.5 rounded-full bg-[#16A6A6] flex items-center justify-center shrink-0">
-                  <span className="w-2 h-2 rounded-full bg-[#EF174F]" />
-                </span>
-                <span>
-                  {lang === 'bn' ? 'বিশ্ব দেখুন, স্বপ্ন ছুঁয়ে দেখুন' : 'Explore the World'}
-                </span>
-              </div>
-
-              {/* Two-Tone Huge Heading: Dark Navy “আন্তর্জাতিক” + Pink/Red “ট্যুর প্যাকেজ” */}
-              <h2 className="text-3xl sm:text-5xl xl:text-[54px] font-black leading-[1.12] tracking-tight">
-                <span className="block text-[#10283B]">
-                  {lang === 'bn' ? 'আন্তর্জাতিক' : 'International'}
-                </span>
-                <span className="block text-[#EF174F] mt-0.5">
-                  {lang === 'bn' ? 'ট্যুর প্যাকেজ' : 'Tour Packages'}
-                </span>
-              </h2>
-
-              <p className="text-xs sm:text-base text-[#10283B]/90 font-semibold leading-relaxed max-w-sm">
-                {lang === 'bn'
-                  ? 'থাইল্যান্ড, মালয়েশিয়া, সিঙ্গাপুর, দুবাই, ইউরোপ এবং আরও অনেক দেশ'
-                  : 'Thailand, Malaysia, Singapore, Dubai, Europe and many more countries'}
-              </p>
-
-              {/* Pink/Red Pill Button with White Text */}
-              <div className="pt-1.5">
-                <Link
-                  href="/tours/international"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#EF174F] hover:bg-[#d51144] text-white font-extrabold text-xs sm:text-sm transition-transform hover:scale-[1.02] shadow-lg"
-                >
-                  <span>
-                    {lang === 'bn'
-                      ? 'আন্তর্জাতিক ট্যুর প্যাকেজ দেখুন'
-                      : 'Explore International Packages'}
-                  </span>
-                  <ArrowRight className="w-4 h-4 shrink-0" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SECTION A: AUTO-SLIDING HERO BANNER RIGHT BELOW HEADER (বাংলাদেশ ট্যুর • ইন্টারন্যাশনাল ট্যুর • ইন্ডিয়ান ভিসা • মেডিকেল) */}
+      <HeroBannerSlider />
 
       {/* SECTION B: 4 TRUST AND SERVICE HIGHLIGHTS STRIP MATCHING SCREENSHOT */}
-      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-5 relative z-30">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-20">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200/80 p-3 sm:p-5">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:divide-x divide-slate-100">
             {[
@@ -261,27 +119,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CORE 4 PILLARS HIGHLIGHT BAR: 1. INTERNATIONAL TOURS, 2. BANGLADESH TOURS, 3. INDIAN VISA PROCESSING, 4. MEDICAL TRAVEL */}
+      {/* CORE 4 PILLARS HIGHLIGHT BAR: 1. BANGLADESH TOURS, 2. INTERNATIONAL TOURS, 3. INDIAN VISA, 4. MEDICAL */}
       <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {[
             {
-              badge: { bn: '০১ · ফোকাস সেবা', en: '01 · CORE SERVICE' },
-              title: { bn: 'আন্তর্জাতিক ট্যুর প্যাকেজ', en: 'International Tours' },
-              subtitle: {
-                bn: 'থাইল্যান্ড, মালয়েশিয়া, সিঙ্গাপুর, দুবাই, নেপাল ও কাশ্মীর',
-                en: 'Thailand, Malaysia, Singapore, Dubai, Nepal & Kashmir',
-              },
-              cta: { bn: 'প্যাকেজ দেখুন', en: 'View Tours' },
-              href: '/tours/international',
-              icon: Globe,
-              accentBg: 'bg-gradient-to-br from-[#EF174F] to-[#c81040] text-white',
-              iconBg: 'bg-white/20 text-white',
-              btnClass: 'bg-white text-[#EF174F] hover:bg-slate-100',
-            },
-            {
-              badge: { bn: '০২ · ফোকাস সেবা', en: '02 · CORE SERVICE' },
-              title: { bn: 'বাংলাদেশ ট্যুর প্যাকেজ', en: 'Domestic Tours (BD)' },
+              badge: { bn: '০১ · ডমেস্টিক ট্যুর', en: '01 · DOMESTIC TOUR' },
+              title: { bn: 'বাংলাদেশ ট্যুর', en: 'Bangladesh Tour' },
               subtitle: {
                 bn: 'কক্সবাজার, সাজেক ভ্যালি, সুন্দরবন, সিলেট ও হাওর ভ্রমণ',
                 en: "Cox's Bazar, Sajek Valley, Sundarbans & Sylhet",
@@ -294,8 +138,22 @@ export default function HomePage() {
               btnClass: 'bg-[#F9C91D] text-[#10283B] hover:bg-[#eab80e]',
             },
             {
-              badge: { bn: '০৩ · বিশেষ সহায়তা', en: '03 · VISA PROCESSING' },
-              title: { bn: 'ইন্ডিয়ান ভিসা প্রসেসিং', en: 'Indian Visa Processing' },
+              badge: { bn: '০২ · গ্লোবাল ট্যুর', en: '02 · GLOBAL TOUR' },
+              title: { bn: 'ইন্টারন্যাশনাল ট্যুর', en: 'International Tour' },
+              subtitle: {
+                bn: 'থাইল্যান্ড, মালয়েশিয়া, সিঙ্গাপুর, দুবাই, নেপাল ও কাশ্মীর',
+                en: 'Thailand, Malaysia, Singapore, Dubai, Nepal & Kashmir',
+              },
+              cta: { bn: 'প্যাকেজ দেখুন', en: 'View Tours' },
+              href: '/tours/international',
+              icon: Globe,
+              accentBg: 'bg-gradient-to-br from-[#EF174F] to-[#c81040] text-white',
+              iconBg: 'bg-white/20 text-white',
+              btnClass: 'bg-white text-[#EF174F] hover:bg-slate-100',
+            },
+            {
+              badge: { bn: '০৩ · ভিসা প্রসেসিং', en: '03 · VISA PROCESSING' },
+              title: { bn: 'ইন্ডিয়ান ভিসা', en: 'Indian Visa' },
               subtitle: {
                 bn: 'ট্যুরিস্ট ও মেডিকেল ভিসা ফরম পূরণ, ডকুমেন্ট ও স্লট সহায়তা',
                 en: 'Tourist & Medical visa form, checklist & slot guidance',
@@ -309,7 +167,7 @@ export default function HomePage() {
             },
             {
               badge: { bn: '০৪ · হেলথকেয়ার ট্রাভেল', en: '04 · MEDICAL TRAVEL' },
-              title: { bn: 'মেডিকেল ও ডক্টর অ্যাপয়েন্টমেন্ট', en: 'Medical Travel Service' },
+              title: { bn: 'মেডিকেল সার্ভিস', en: 'Medical Service' },
               subtitle: {
                 bn: 'চেন্নাই, ভেলোর (CMC), ব্যাঙ্গালোর ও কলকাতার হাসপাতাল সিরিয়াল',
                 en: 'Chennai, Vellore (CMC), Bangalore & Kolkata hospital support',
@@ -328,12 +186,12 @@ export default function HomePage() {
               <Link
                 key={index}
                 href={pillar.href}
-                className={`group rounded-2xl p-3.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between gap-2.5 ${pillar.accentBg}`}
+                className={`group rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between gap-3 ${pillar.accentBg}`}
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between gap-2">
                     <span
-                      className={`text-[9px] sm:text-[10px] font-extrabold tracking-wider uppercase px-2 py-0.5 rounded-full ${
+                      className={`text-[10px] sm:text-xs font-extrabold tracking-wider uppercase px-2.5 py-0.5 rounded-full ${
                         isLightCard
                           ? 'bg-[#EF174F]/10 text-[#EF174F]'
                           : 'bg-black/20 text-white/95'
@@ -342,18 +200,18 @@ export default function HomePage() {
                       {t(pillar.badge)}
                     </span>
                     <div
-                      className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${pillar.iconBg}`}
+                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 ${pillar.iconBg}`}
                     >
-                      <PillarIcon className="w-4 h-4" />
+                      <PillarIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                   </div>
 
-                  <h3 className="text-xs sm:text-base font-black leading-snug">
+                  <h3 className="text-base sm:text-xl font-black leading-snug">
                     {t(pillar.title)}
                   </h3>
                   <p
-                    className={`text-[10px] sm:text-xs leading-snug line-clamp-2 ${
-                      isLightCard ? 'text-slate-600' : 'text-white/85'
+                    className={`text-xs sm:text-sm leading-snug line-clamp-2 ${
+                      isLightCard ? 'text-slate-600' : 'text-white/90'
                     }`}
                   >
                     {t(pillar.subtitle)}
@@ -362,10 +220,10 @@ export default function HomePage() {
 
                 <div className="pt-1">
                   <span
-                    className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] sm:text-xs font-extrabold transition-transform group-hover:translate-x-0.5 ${pillar.btnClass}`}
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-extrabold transition-transform group-hover:translate-x-0.5 ${pillar.btnClass}`}
                   >
                     <span>{t(pillar.cta)}</span>
-                    <ArrowRight className="w-3 h-3 shrink-0" />
+                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                   </span>
                 </div>
               </Link>
