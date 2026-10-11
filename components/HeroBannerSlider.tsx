@@ -325,36 +325,42 @@ export default function HeroBannerSlider() {
         </div>
       </section>
 
-      {/* PART 2: 4-PILLAR SWITCHER BAR BELOW THE BANNER (ব্যানার এর নিচে থাকবে মধ্যে না) */}
+      {/* PART 2: 4-PILLAR DIRECT NAVIGATION BAR BELOW THE BANNER */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 bg-[#1E3540] p-2 sm:p-2.5 rounded-2xl border border-slate-200/20 shadow-md">
           {slides.map((s, idx) => {
             const TabIcon = s.icon;
             const isSelected = idx === activeIndex;
             return (
-              <button
+              <Link
                 key={s.id}
-                type="button"
-                onClick={() => setActiveIndex(idx)}
-                className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-left transition-all duration-300 ${
+                href={s.ctaHref}
+                className={`group flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl text-left transition-all duration-300 ${
                   isSelected
                     ? 'bg-[#FAD814] text-[#10283B] shadow-sm scale-[1.01]'
-                    : 'bg-white/10 hover:bg-white/15 text-white'
+                    : 'bg-white/10 hover:bg-[#FAD814] text-white hover:text-[#10283B]'
                 }`}
               >
-                <span
-                  className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                    isSelected
-                      ? 'bg-[#1E3540] text-[#FAD814]'
-                      : 'bg-white/10 text-[#FAD814]'
+                <div className="flex items-center gap-2 min-w-0">
+                  <span
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                      isSelected
+                        ? 'bg-[#1E3540] text-[#FAD814]'
+                        : 'bg-white/10 group-hover:bg-[#1E3540] text-[#FAD814]'
+                    }`}
+                  >
+                    <TabIcon className="w-4 h-4" />
+                  </span>
+                  <span className="text-xs sm:text-sm font-black truncate">
+                    {s.tabLabel[lang]}
+                  </span>
+                </div>
+                <ArrowRight
+                  className={`w-3.5 h-3.5 shrink-0 transition-transform group-hover:translate-x-0.5 ${
+                    isSelected ? 'text-[#10283B]' : 'text-white/70 group-hover:text-[#10283B]'
                   }`}
-                >
-                  <TabIcon className="w-4 h-4" />
-                </span>
-                <span className="text-xs sm:text-sm font-black truncate">
-                  {s.tabLabel[lang]}
-                </span>
-              </button>
+                />
+              </Link>
             );
           })}
         </div>
