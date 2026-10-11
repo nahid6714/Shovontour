@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Plane,
   Phone,
   Mail,
   Facebook,
@@ -12,9 +11,9 @@ import {
   User,
   CreditCard,
   Lock,
-  Sparkles,
 } from 'lucide-react';
 import { useApp } from '@/lib/app-context';
+import BrandLogo from './BrandLogo';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -31,15 +30,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Col 1: Brand Info & Owner */}
           <div className="lg:col-span-2 space-y-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2.5 text-xl font-extrabold text-white"
-            >
-              <span className="w-9 h-9 rounded-xl bg-[#F9C91D] text-[#10283B] flex items-center justify-center shrink-0">
-                <Plane className="w-5 h-5" />
-              </span>
-              <span>{settings.brandName}</span>
-            </Link>
+            <BrandLogo />
 
             <p className="text-sm text-slate-300 leading-relaxed max-w-md">
               {t(settings.tagline)}

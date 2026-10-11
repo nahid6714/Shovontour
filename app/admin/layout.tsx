@@ -30,6 +30,7 @@ import {
   ShieldAlert,
 } from 'lucide-react';
 import { useApp } from '@/lib/app-context';
+import BrandLogo from '@/components/BrandLogo';
 
 const ADMIN_NAV_ITEMS = [
   { href: '/admin', icon: LayoutDashboard, label: { bn: 'ড্যাশবোর্ড ওভারভিউ', en: 'Dashboard Overview' } },
@@ -63,15 +64,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-[#10283B] text-white shrink-0 border-r border-white/10">
         <div className="p-5 border-b border-white/10 flex items-center justify-between">
-          <Link href="/admin" className="flex items-center gap-2.5">
-            <span className="w-8 h-8 rounded-lg bg-[#F9C91D] text-[#10283B] flex items-center justify-center shrink-0">
-              <Plane className="w-4 h-4" />
+          <div className="flex flex-col gap-1">
+            <BrandLogo href="/admin" />
+            <span className="text-[10px] text-[#F9C91D] font-mono tracking-wider pl-1">
+              ADMIN PROTOTYPE
             </span>
-            <div className="leading-tight">
-              <span className="text-sm font-extrabold block">Admin Demo</span>
-              <span className="text-[10px] text-[#F9C91D] font-mono">PROTOTYPE ONLY</span>
-            </div>
-          </Link>
+          </div>
         </div>
 
         <nav className="flex-1 overflow-y-auto p-3 space-y-1">
