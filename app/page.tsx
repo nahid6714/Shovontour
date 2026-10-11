@@ -173,9 +173,9 @@ export default function HomePage() {
       </section>
 
       {/* SECTION B: 4 TRUST AND SERVICE HIGHLIGHTS STRIP MATCHING SCREENSHOT */}
-      <section className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 -mt-6 relative z-20">
-        <div className="bg-white rounded-2xl shadow-md border border-slate-200/80 p-4 sm:p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 -mt-5 relative z-20">
+        <div className="bg-white rounded-2xl shadow-md border border-slate-200/80 p-3 sm:p-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {[
               {
                 icon: ShieldCheck,
@@ -187,39 +187,39 @@ export default function HomePage() {
                 icon: Award,
                 circleColor: 'bg-[#EF174F] text-white',
                 title: { bn: 'নির্বাচিত প্যাকেজ', en: 'Curated Packages' },
-                desc: { bn: 'আমাদের নিজস্ব ট্যুর প্ল্যান (নমুনা)', en: 'Handpicked sample tour plans' },
+                desc: { bn: 'আমাদের নিজস্ব ট্যুর প্ল্যান', en: 'Handpicked sample plans' },
               },
               {
                 icon: Compass,
                 circleColor: 'bg-[#F9C91D] text-[#10283B]',
                 title: { bn: 'অভিজ্ঞ টিম', en: 'Experienced Team' },
-                desc: { bn: 'ভ্রমণ পরিকল্পনায় সহযোগী', en: 'Dedicated trip coordinators' },
+                desc: { bn: 'ভ্রমণ পরিকল্পনায় সহযোগী', en: 'Dedicated coordinators' },
               },
               {
                 icon: Headphones,
                 circleColor: 'bg-sky-100 text-sky-600',
                 title: { bn: 'বুকিং সহায়তা', en: 'Booking Assistance' },
-                desc: { bn: 'ভ্রমণের আগে, পরে, সব সময়', en: 'Support before & during trips' },
+                desc: { bn: 'ভ্রমণের আগে, পরে, সব সময়', en: 'Support before & during' },
               },
             ].map((item, idx) => {
               const IconComponent = item.icon;
               return (
                 <div
                   key={idx}
-                  className={`flex items-center gap-3.5 ${
-                    idx > 0 ? 'pt-3 sm:pt-0 sm:pl-5' : ''
-                  }`}
+                  className="flex items-center gap-2.5 sm:gap-3.5 p-1.5 sm:p-1 rounded-xl"
                 >
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${item.circleColor}`}
+                    className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0 ${item.circleColor}`}
                   >
-                    <IconComponent className="w-6 h-6" />
+                    <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-sm sm:text-base font-extrabold text-[#10283B] truncate">
+                    <h3 className="text-xs sm:text-sm font-extrabold text-[#10283B] truncate">
                       {t(item.title)}
                     </h3>
-                    <p className="text-xs text-slate-500 truncate">{t(item.desc)}</p>
+                    <p className="text-[10px] sm:text-xs text-slate-500 truncate">
+                      {t(item.desc)}
+                    </p>
                   </div>
                 </div>
               );
@@ -229,16 +229,16 @@ export default function HomePage() {
       </section>
 
       {/* SECTION C & D: SIDE-BY-SIDE POPULAR BANGLADESH & INTERNATIONAL TOUR PACKAGES MATCHING SCREENSHOT */}
-      <section className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 items-start">
           {/* LEFT BLOCK: জনপ্রিয় বাংলাদেশ ট্যুর প্যাকেজ */}
-          <div className="space-y-5">
+          <div className="space-y-3.5 sm:space-y-4">
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-9 h-9 rounded-full bg-[#EF174F] text-white flex items-center justify-center shrink-0 shadow-xs">
-                  <Award className="w-5 h-5" />
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#EF174F] text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5" />
                 </span>
-                <h2 className="text-lg sm:text-2xl font-black text-[#10283B] truncate">
+                <h2 className="text-base sm:text-2xl font-black text-[#10283B] truncate">
                   {lang === 'bn' ? (
                     <>
                       জনপ্রিয় <span className="text-[#EF174F]">বাংলাদেশ</span> ট্যুর প্যাকেজ
@@ -253,14 +253,14 @@ export default function HomePage() {
 
               <Link
                 href="/tours/bangladesh"
-                className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-[#16A6A6] text-[#10283B] hover:bg-[#16A6A6] hover:text-white text-xs font-bold transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-[#16A6A6] text-[#10283B] hover:bg-[#16A6A6] hover:text-white text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap shrink-0"
               >
                 <span>{lang === 'bn' ? 'সব দেখুন' : 'View All'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-2.5 sm:gap-4">
               {bangladeshPackages.map((pkg) => (
                 <PackageCard key={pkg.id} pkg={pkg} compact />
               ))}
@@ -268,13 +268,13 @@ export default function HomePage() {
           </div>
 
           {/* RIGHT BLOCK: জনপ্রিয় আন্তর্জাতিক ট্যুর প্যাকেজ */}
-          <div className="space-y-5">
+          <div className="space-y-3.5 sm:space-y-4">
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-9 h-9 rounded-full bg-[#16A6A6]/15 text-[#16A6A6] flex items-center justify-center shrink-0">
-                  <Plane className="w-5 h-5" />
+              <div className="flex items-center gap-2 min-w-0">
+                <span className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#16A6A6]/15 text-[#16A6A6] flex items-center justify-center shrink-0">
+                  <Plane className="w-4 h-4 sm:w-5 sm:h-5" />
                 </span>
-                <h2 className="text-lg sm:text-2xl font-black text-[#10283B] truncate">
+                <h2 className="text-base sm:text-2xl font-black text-[#10283B] truncate">
                   {lang === 'bn' ? (
                     <>
                       জনপ্রিয় <span className="text-[#EF174F]">আন্তর্জাতিক</span> ট্যুর প্যাকেজ
@@ -289,14 +289,14 @@ export default function HomePage() {
 
               <Link
                 href="/tours/international"
-                className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-[#16A6A6] text-[#10283B] hover:bg-[#16A6A6] hover:text-white text-xs font-bold transition-colors whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-[#16A6A6] text-[#10283B] hover:bg-[#16A6A6] hover:text-white text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap shrink-0"
               >
                 <span>{lang === 'bn' ? 'সব দেখুন' : 'View All'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-2.5 sm:gap-4">
               {internationalPackages.map((pkg) => (
                 <PackageCard key={pkg.id} pkg={pkg} compact />
               ))}
@@ -306,39 +306,39 @@ export default function HomePage() {
       </section>
 
       {/* SECTION E: 8 TOUR CATEGORIES ROW MATCHING SCREENSHOT */}
-      <section className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 space-y-5">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4">
         <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="w-9 h-9 rounded-full bg-[#16A6A6] text-white flex items-center justify-center shrink-0">
-              <Compass className="w-5 h-5" />
+          <div className="flex items-center gap-2">
+            <span className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#16A6A6] text-white flex items-center justify-center shrink-0">
+              <Compass className="w-4 h-4 sm:w-5 sm:h-5" />
             </span>
             <div>
-              <h2 className="text-lg sm:text-2xl font-black text-[#10283B]">
+              <h2 className="text-base sm:text-2xl font-black text-[#10283B]">
                 {lang === 'bn' ? 'ট্যুর ক্যাটাগরি' : 'Tour Categories'}
               </h2>
-              <div className="w-16 h-1 rounded-full bg-[#F9C91D] mt-0.5" />
+              <div className="w-12 sm:w-16 h-1 rounded-full bg-[#F9C91D] mt-0.5" />
             </div>
           </div>
 
           <Link
             href="/tours/bangladesh"
-            className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-[#16A6A6] text-[#10283B] hover:bg-[#16A6A6] hover:text-white text-xs font-bold transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-[#16A6A6] text-[#10283B] hover:bg-[#16A6A6] hover:text-white text-[11px] sm:text-xs font-bold transition-colors whitespace-nowrap shrink-0"
           >
             <span>{lang === 'bn' ? 'সব ক্যাটাগরি' : 'All Categories'}</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+        <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3">
           {[
             { slug: 'sea', bn: 'সমুদ্র ভ্রমণ', en: 'Sea Tours', img: '/images/pkg_coxs_bazar.jpg' },
-            { slug: 'mountain', bn: 'পাহাড় ভ্রমণ', en: 'Mountain Tours', img: '/images/pkg_sajek_valley.jpg' },
+            { slug: 'mountain', bn: 'পাহাড় ভ্রমণ', en: 'Mountain', img: '/images/pkg_sajek_valley.jpg' },
             { slug: 'river-haor', bn: 'নদী ও হাওর', en: 'River & Haor', img: '/images/pkg_sundarbans.jpg' },
             { slug: 'adventure', bn: 'অ্যাডভেঞ্চার', en: 'Adventure', img: '/images/pkg_sajek_valley.jpg' },
-            { slug: 'family', bn: 'পারিবারিক ট্যুর', en: 'Family Tours', img: '/images/pkg_sylhet_tea.jpg' },
-            { slug: 'couple', bn: 'কাপল ট্যুর', en: 'Couple Tours', img: '/images/pkg_coxs_bazar.jpg' },
-            { slug: 'religious', bn: 'ধর্মীয় ভ্রমণ', en: 'Religious Tours', img: '/images/pkg_sylhet_tea.jpg' },
-            { slug: 'international', bn: 'আন্তর্জাতিক ট্যুর', en: 'International', img: '/images/hero_international.jpg' },
+            { slug: 'family', bn: 'পারিবারিক ট্যুর', en: 'Family', img: '/images/pkg_sylhet_tea.jpg' },
+            { slug: 'couple', bn: 'কাপল ট্যুর', en: 'Couple', img: '/images/pkg_coxs_bazar.jpg' },
+            { slug: 'religious', bn: 'ধর্মীয় ভ্রমণ', en: 'Religious', img: '/images/pkg_sylhet_tea.jpg' },
+            { slug: 'international', bn: 'আন্তর্জাতিক', en: 'International', img: '/images/hero_international.jpg' },
           ].map((cat) => (
             <Link
               key={cat.slug}
@@ -347,7 +347,7 @@ export default function HomePage() {
                   ? '/tours/international'
                   : `/tours/bangladesh?category=${cat.slug}`
               }
-              className="group relative rounded-2xl overflow-hidden aspect-[4/4.2] flex flex-col justify-end border border-slate-200 shadow-xs hover:shadow-lg transition-all"
+              className="group relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3.6] sm:aspect-[4/4.2] flex flex-col justify-end border border-slate-200 shadow-xs hover:shadow-md transition-all"
             >
               <div className="absolute inset-0">
                 <ResilientImage
@@ -358,8 +358,8 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#10283B]/95 via-[#10283B]/30 to-transparent" />
               </div>
 
-              <div className="relative z-10 p-2.5 text-center">
-                <span className="block text-xs sm:text-sm font-extrabold text-white group-hover:text-[#F9C91D] transition-colors truncate">
+              <div className="relative z-10 p-1.5 sm:p-2.5 text-center">
+                <span className="block text-[10px] sm:text-xs font-extrabold text-white group-hover:text-[#F9C91D] transition-colors truncate">
                   {lang === 'bn' ? cat.bn : cat.en}
                 </span>
               </div>
@@ -563,34 +563,34 @@ export default function HomePage() {
       </section>
 
       {/* SECTION H: VISA AND MEDICAL ASSISTANCE */}
-      <section className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 space-y-6">
-        <div className="space-y-1.5">
-          <p className="text-xs font-bold text-[#16A6A6] tracking-wide">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-4">
+        <div className="space-y-1">
+          <p className="text-[11px] sm:text-xs font-bold text-[#16A6A6] tracking-wide">
             {lang === 'bn'
               ? 'সহায়তা ও পরামর্শ সেবা · কোনো ভিসা বা অ্যাপয়েন্টমেন্ট গ্যারান্টি নয়'
               : 'DOCUMENTATION & INQUIRY ASSISTANCE ONLY'}
           </p>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#10283B]">
+          <h2 className="text-lg sm:text-2xl font-extrabold text-[#10283B]">
             {lang === 'bn'
               ? 'ভারতীয় ভিসা ও মেডিকেল ট্রাভেল সহায়তা'
               : 'Indian Visa & Medical Travel Assistance'}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4">
           {[
             {
               icon: FileText,
-              title: { bn: 'ভারতীয় ট্যুরিস্ট ভিসা সহায়তা', en: 'Indian Tourist Visa Assistance' },
+              title: { bn: 'ভারতীয় ট্যুরিস্ট ভিসা সহায়তা', en: 'Indian Tourist Visa' },
               desc: {
                 bn: 'অনলাইন আবেদন ফরম পূরণ ও প্রয়োজনীয় কাগজপত্রের চেকলিস্ট প্রস্তুতকরণ।',
-                en: 'Guidance on application form filling and required document checklists.',
+                en: 'Guidance on application form filling and document checklists.',
               },
               href: '/services/indian-visa',
             },
             {
               icon: Stethoscope,
-              title: { bn: 'ভারতীয় মেডিকেল ভিসা সহায়তা', en: 'Indian Medical Visa Assistance' },
+              title: { bn: 'ভারতীয় মেডিকেল ভিসা সহায়তা', en: 'Indian Medical Visa' },
               desc: {
                 bn: 'রোগী ও অ্যাটেনডেন্টের মেডিকেল ভিসা ডকুমেন্টেশন ও লেটার যাচাই সহায়তা।',
                 en: 'Documentation support for patients and medical attendants.',
@@ -599,7 +599,7 @@ export default function HomePage() {
             },
             {
               icon: Calendar,
-              title: { bn: 'ভিসা স্লট ও আবেদন অনুসন্ধান', en: 'Visa Slot & Status Inquiry' },
+              title: { bn: 'ভিসা স্লট ও আবেদন অনুসন্ধান', en: 'Visa Slot & Status' },
               desc: {
                 bn: 'আবেদন জমা দেওয়ার প্রস্তুতি ও অ্যাপয়েন্টমেন্ট তথ্যের জন্য পরামর্শ।',
                 en: 'Advisory support for visa submission readiness and scheduling.',
@@ -608,7 +608,7 @@ export default function HomePage() {
             },
             {
               icon: Building2,
-              title: { bn: 'হাসপাতাল অ্যাপয়েন্টমেন্ট সমন্বয়', en: 'Hospital Appointment Coordination' },
+              title: { bn: 'হাসপাতাল অ্যাপয়েন্টমেন্ট সমন্বয়', en: 'Hospital Appointment' },
               desc: {
                 bn: 'চেন্নাই, ভেলোর, ব্যাঙ্গালোর ও কলকাতার হাসপাতালে ডাক্তারের সিরিয়াল অনুসন্ধান।',
                 en: 'Assistance with doctor appointment inquiries across major hospitals.',
@@ -617,7 +617,7 @@ export default function HomePage() {
             },
             {
               icon: Sparkles,
-              title: { bn: 'মেডিকেল ট্রাভেল প্ল্যানিং', en: 'Medical Travel Planning' },
+              title: { bn: 'মেডিকেল ট্রাভেল প্ল্যানিং', en: 'Medical Travel Plan' },
               desc: {
                 bn: 'রোগীর সুবিধা অনুযায়ী এয়ার/ট্রেন টিকিট ও হাসপাতাল সংলগ্ন হোটেল পরিকল্পনা।',
                 en: 'Patient-friendly accommodation near hospitals and transfer planning.',
@@ -629,24 +629,26 @@ export default function HomePage() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-xs flex flex-col justify-between gap-4"
+                className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-200/90 shadow-xs flex flex-col justify-between gap-2.5"
               >
-                <div className="space-y-2.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#F4F8FB] text-[#16A6A6] flex items-center justify-center">
-                    <IconComp className="w-5 h-5" />
+                <div className="space-y-1.5">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#F4F8FB] text-[#16A6A6] flex items-center justify-center">
+                    <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <h3 className="text-sm sm:text-base font-bold text-[#10283B] leading-snug">
+                  <h3 className="text-xs sm:text-sm font-bold text-[#10283B] leading-snug line-clamp-2">
                     {t(srv.title)}
                   </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{t(srv.desc)}</p>
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-snug line-clamp-2">
+                    {t(srv.desc)}
+                  </p>
                 </div>
 
                 <Link
                   href={srv.href}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#EF174F] hover:underline pt-1"
+                  className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#EF174F] hover:underline pt-0.5"
                 >
-                  <span>{lang === 'bn' ? 'বিস্তারিত ও ফরম' : 'Inquiry & Details'}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>{lang === 'bn' ? 'বিস্তারিত' : 'Details'}</span>
+                  <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
             );

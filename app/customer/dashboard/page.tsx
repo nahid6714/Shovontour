@@ -160,7 +160,7 @@ export default function CustomerDashboardPage() {
               : 'No saved packages yet. Click the heart icon on any tour card to save it here.'}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
             {savedPackages.map((pkg) => (
               <PackageCard key={pkg.id} pkg={pkg} />
             ))}

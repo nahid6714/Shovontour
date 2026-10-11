@@ -121,7 +121,7 @@ export default function DestinationDetailPage({
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
             {relatedPackages.map((pkg) => (
               <PackageCard key={pkg.id} pkg={pkg} />
             ))}
