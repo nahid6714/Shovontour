@@ -203,7 +203,7 @@ export default function HeroBannerSlider() {
             return (
               <div
                 key={slide.id}
-                className="relative w-full shrink-0 min-h-[340px] sm:min-h-[420px] lg:min-h-[460px] flex items-center overflow-hidden"
+                className="relative w-full shrink-0 min-h-[190px] sm:min-h-[360px] lg:min-h-[420px] flex items-center overflow-hidden"
               >
                 {/* Full-Bleed Slide Background Image */}
                 <div className="absolute inset-0">
@@ -216,8 +216,8 @@ export default function HeroBannerSlider() {
                 </div>
 
                 {/* Logo-Themed Colorful Curved Accents */}
-                <div className="absolute -bottom-20 -left-14 w-48 h-36 rounded-[100%] bg-[#EE2454] rotate-12 opacity-90 pointer-events-none" />
-                <div className="absolute -bottom-24 left-12 w-52 h-32 rounded-[100%] bg-[#FAD814] -rotate-6 opacity-90 pointer-events-none" />
+                <div className="absolute -bottom-16 -left-12 w-36 sm:w-48 h-24 sm:h-36 rounded-[100%] bg-[#EE2454] rotate-12 opacity-85 pointer-events-none" />
+                <div className="absolute -bottom-20 left-8 sm:left-12 w-40 sm:w-52 h-24 sm:h-32 rounded-[100%] bg-[#FAD814] -rotate-6 opacity-85 pointer-events-none" />
                 <div className="hidden lg:block absolute -top-12 -right-12 w-44 h-44 rounded-full bg-[#F29120]/85 pointer-events-none" />
                 <div className="hidden lg:block absolute -bottom-14 -right-10 w-48 h-40 rounded-full bg-[#0F8E95]/85 pointer-events-none" />
 
@@ -229,36 +229,36 @@ export default function HeroBannerSlider() {
                 </div>
                 <div className="hidden sm:block absolute top-24 right-36 w-24 border-t-2 border-dashed border-white/75 -rotate-[22deg] pointer-events-none" />
 
-                {/* Banner Content (Only Banner Info & CTA Buttons inside the Banner!) */}
-                <div className="relative z-20 max-w-7xl mx-auto w-full px-10 sm:px-14 lg:px-16 py-8 sm:py-12">
-                  <div className="max-w-2xl space-y-3 sm:space-y-4">
+                {/* Banner Content (Compact on Mobile matching marked box, Generous on Desktop) */}
+                <div className="relative z-20 max-w-7xl mx-auto w-full px-9 sm:px-14 lg:px-16 py-4 sm:py-10">
+                  <div className="max-w-2xl space-y-1.5 sm:space-y-3.5">
                     {/* Top Pill Badge */}
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#132630]/90 border border-white/20 text-white text-xs sm:text-sm font-bold shadow-md">
-                      <span className="w-3.5 h-3.5 rounded-full bg-[#17A673] flex items-center justify-center shrink-0">
-                        <span className="w-2 h-2 rounded-full bg-[#EE2454]" />
+                    <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-[#132630]/90 border border-white/20 text-white text-[10px] sm:text-xs font-bold shadow-md">
+                      <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-[#17A673] flex items-center justify-center shrink-0">
+                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#EE2454]" />
                       </span>
                       <span>{slide.badge[lang]}</span>
                     </div>
 
-                    {/* Large Bold Two-Tone Heading */}
-                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight drop-shadow-md">
-                      <span className="block text-white">{slide.titleLine1[lang]}</span>
-                      <span className={`block mt-1 ${slide.titleLine2Color}`}>
+                    {/* Bold Two-Tone Heading */}
+                    <h1 className="text-xl sm:text-4xl lg:text-5xl font-black leading-[1.12] tracking-tight drop-shadow-md">
+                      <span className="text-white">{slide.titleLine1[lang]} </span>
+                      <span className={`block sm:inline mt-0.5 sm:mt-0 ${slide.titleLine2Color}`}>
                         {slide.titleLine2[lang]}
                       </span>
                     </h1>
 
                     {/* Supporting Text */}
-                    <p className="text-xs sm:text-base lg:text-lg text-white/95 font-semibold leading-relaxed max-w-xl drop-shadow-xs">
+                    <p className="text-[11px] sm:text-base text-white/95 font-semibold leading-snug sm:leading-relaxed max-w-xl line-clamp-2 drop-shadow-xs">
                       {slide.subtitle[lang]}
                     </p>
 
-                    {/* Feature Check Pills */}
-                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5">
+                    {/* Feature Check Pills (Desktop/Tablet only so mobile stays compact) */}
+                    <div className="hidden sm:flex flex-wrap items-center gap-2 pt-0.5">
                       {slide.highlights.map((h, i) => (
                         <span
                           key={i}
-                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-xs border border-white/20 text-white text-[11px] sm:text-xs font-bold"
+                          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-xs border border-white/20 text-white text-xs font-bold"
                         >
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#FAD814] shrink-0" />
                           <span>{h[lang]}</span>
@@ -266,19 +266,19 @@ export default function HeroBannerSlider() {
                       ))}
                     </div>
 
-                    {/* Primary & Secondary Action Buttons */}
-                    <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3.5">
+                    {/* Action Buttons (Single compact row on mobile) */}
+                    <div className="pt-1 sm:pt-2 flex flex-wrap items-center gap-2 sm:gap-3">
                       <Link
                         href={slide.ctaHref}
-                        className={`inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-black text-xs sm:text-sm transition-transform hover:scale-[1.02] shadow-xl ${slide.ctaStyle}`}
+                        className={`inline-flex items-center gap-1.5 px-3.5 sm:px-6 py-1.5 sm:py-2.5 rounded-full font-black text-[11px] sm:text-sm transition-transform hover:scale-[1.02] shadow-lg ${slide.ctaStyle}`}
                       >
                         <span>{slide.ctaText[lang]}</span>
-                        <ArrowRight className="w-4 h-4 shrink-0" />
+                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                       </Link>
 
                       <Link
                         href={slide.secondaryCtaHref}
-                        className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/25 font-extrabold text-xs sm:text-sm transition-colors backdrop-blur-xs"
+                        className="inline-flex items-center gap-1.5 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white border border-white/25 font-extrabold text-[11px] sm:text-sm transition-colors backdrop-blur-xs"
                       >
                         <span>{slide.secondaryCtaText[lang]}</span>
                       </Link>
