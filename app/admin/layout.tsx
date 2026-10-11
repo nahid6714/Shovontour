@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -26,11 +26,21 @@ import {
   RotateCcw,
   Menu,
   X,
-  Plane,
   ShieldAlert,
+  Lock,
+  Phone,
+  KeyRound,
+  Eye,
+  EyeOff,
+  LogOut,
+  ArrowRight,
 } from 'lucide-react';
 import { useApp } from '@/lib/app-context';
 import BrandLogo from '@/components/BrandLogo';
+
+const ADMIN_AUTH_KEY = 'shovon_admin_auth_v1';
+const VALID_ADMIN_ID = '01931866636';
+const VALID_ADMIN_PASS = '3012024';
 
 const ADMIN_NAV_ITEMS = [
   { href: '/admin', icon: LayoutDashboard, label: { bn: 'ড্যাশবোর্ড ওভারভিউ', en: 'Dashboard Overview' } },
@@ -56,18 +66,184 @@ const ADMIN_NAV_ITEMS = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { lang, setLang, settings, resetDemoData } = useApp();
+  const { lang, setLang, settings, resetDemoData, showToast } = useApp();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Admin Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [loginId, setLoginId] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState('');
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(ADMIN_AUTH_KEY);
+      if (saved === 'authenticated') {
+        setIsAuthenticated(true);
+      }
+    } catch {}
+    setAuthChecked(true);
+  }, []);
+
+  const handleAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+
+    const cleanId = loginId.trim();
+    const cleanPass = password.trim();
+
+    if (cleanId === VALID_ADMIN_ID && cleanPass === VALID_ADMIN_PASS) {
+      setIsAuthenticated(true);
+      try {
+        localStorage.setItem(ADMIN_AUTH_KEY, 'authenticated');
+      } catch {}
+      showToast(
+        lang === 'bn'
+          ? 'অ্যাডমিন প্যানেলে সফলভাবে লগইন হয়েছে'
+          : 'Successfully logged in to Admin Panel',
+        'success'
+      );
+    } else {
+      setLoginError(
+        lang === 'bn'
+          ? 'ভুল লগইন নাম্বার বা পাসওয়ার্ড! সঠিক নাম্বার (01931866636) ও পাসওয়ার্ড (3012024) দিন।'
+          : 'Invalid Login ID or Password! Use 01931866636 and 3012024.'
+      );
+    }
+  };
+
+  const handleAdminLogout = () => {
+    setIsAuthenticated(false);
+    setLoginId('');
+    setPassword('');
+    try {
+      localStorage.removeItem(ADMIN_AUTH_KEY);
+    } catch {}
+    showToast(
+      lang === 'bn' ? 'অ্যাডমিন প্যানেল থেকে লগআউট করা হয়েছে' : 'Logged out from Admin Panel',
+      'info'
+    );
+  };
+
+  if (!authChecked) {
+    return (
+      <div className="min-h-screen bg-[#1E3540] flex items-center justify-center p-4">
+        <div className="w-8 h-8 rounded-full border-3 border-[#FAD814] border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  // Show Admin Login Gate directly when visiting /admin while not logged in
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#132630] via-[#1E3540] to-[#10283B] flex flex-col justify-center items-center px-4 py-10">
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
+          {/* Top Brand Header inside Login Card */}
+          <div className="bg-[#1E3540] px-6 py-6 text-center space-y-2 border-b border-white/10">
+            <div className="flex justify-center">
+              <BrandLogo href="/admin" />
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[#FAD814] text-[11px] font-bold">
+              <Lock className="w-3.5 h-3.5" />
+              <span>
+                {lang === 'bn' ? 'অ্যাডমিন কন্ট্রোল প্যানেল লগইন' : 'ADMIN CONTROL PANEL LOGIN'}
+              </span>
+            </div>
+          </div>
+
+          {/* Login Form Body */}
+          <form onSubmit={handleAdminLogin} className="p-6 sm:p-7 space-y-4">
+            {loginError && (
+              <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs font-bold text-[#EE2454]">
+                {loginError}
+              </div>
+            )}
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-extrabold text-[#10283B]">
+                {lang === 'bn' ? 'লগইন আইডি / মোবাইল নাম্বার' : 'Login ID / Mobile Number'}
+              </label>
+              <div className="relative">
+                <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  required
+                  value={loginId}
+                  onChange={(e) => setLoginId(e.target.value)}
+                  placeholder="01931866636"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#F4F8FB] border border-slate-200 text-sm font-mono font-bold text-[#10283B] focus:outline-none focus:border-[#0F8E95]"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-xs font-extrabold text-[#10283B]">
+                {lang === 'bn' ? 'পাসওয়ার্ড' : 'Password'}
+              </label>
+              <div className="relative">
+                <KeyRound className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="•••••••"
+                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-[#F4F8FB] border border-slate-200 text-sm font-mono font-bold text-[#10283B] focus:outline-none focus:border-[#0F8E95]"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  aria-label="Toggle Password Visibility"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 px-5 rounded-xl bg-[#FAD814] hover:bg-[#e5c40e] text-[#10283B] font-black text-sm flex items-center justify-center gap-2 shadow-md transition-colors"
+            >
+              <span>{lang === 'bn' ? 'লগইন করুন' : 'Login to Admin Panel'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1 font-bold text-slate-500 hover:text-[#10283B]"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>{lang === 'bn' ? 'ওয়েবসাইটে ফিরে যান' : 'Back to Website'}</span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setLang(lang === 'bn' ? 'en' : 'bn')}
+                className="inline-flex items-center gap-1 font-bold text-[#0F8E95]"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>{lang === 'bn' ? 'English' : 'বাংলা'}</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex bg-[#F4F8FB] text-[#10283B]">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-[#10283B] text-white shrink-0 border-r border-white/10">
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-[#1E3540] text-white shrink-0 border-r border-white/10">
         <div className="p-5 border-b border-white/10 flex items-center justify-between">
           <div className="flex flex-col gap-1">
             <BrandLogo href="/admin" />
-            <span className="text-[10px] text-[#F9C91D] font-mono tracking-wider pl-1">
-              ADMIN PROTOTYPE
+            <span className="text-[10px] text-[#FAD814] font-mono tracking-wider pl-1">
+              ADMIN PANEL · {VALID_ADMIN_ID}
             </span>
           </div>
         </div>
@@ -82,7 +258,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 href={item.href}
                 className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold transition-colors ${
                   active
-                    ? 'bg-[#F9C91D] text-[#10283B] font-extrabold'
+                    ? 'bg-[#FAD814] text-[#10283B] font-extrabold'
                     : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
@@ -96,11 +272,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div className="p-4 border-t border-white/10 space-y-2">
           <Link
             href="/"
-            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-[#16A6A6] hover:bg-[#128c8c] text-white text-xs font-bold transition-colors"
+            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#0F8E95] hover:bg-[#0c787e] text-white text-xs font-bold transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>{lang === 'bn' ? 'পাবলিক ওয়েবসাইটে ফিরুন' : 'Return to Website'}</span>
           </Link>
+          <button
+            type="button"
+            onClick={handleAdminLogout}
+            className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#EE2454]/90 hover:bg-[#EE2454] text-white text-xs font-bold transition-colors"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>{lang === 'bn' ? 'লগআউট করুন' : 'Logout'}</span>
+          </button>
         </div>
       </aside>
 
@@ -116,17 +300,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             >
               <Menu className="w-5 h-5" />
             </button>
-            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-[#EF174F] min-w-0">
-              <ShieldAlert className="w-4 h-4 shrink-0" />
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-[#10283B] min-w-0">
+              <ShieldAlert className="w-4 h-4 text-[#0F8E95] shrink-0" />
               <span className="truncate">
-                {lang === 'bn'
-                  ? 'ভিজ্যুয়াল অ্যাডমিন প্রোটোটাইপ (ডেমো)'
-                  : 'VISUAL ADMIN PROTOTYPE (DEMO)'}
+                {lang === 'bn' ? 'অ্যাডমিন প্যানেল' : 'ADMIN PANEL'} ({VALID_ADMIN_ID})
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               type="button"
               onClick={resetDemoData}
@@ -134,26 +316,36 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span className="hidden md:inline">
-                {lang === 'bn' ? 'ডেমো ডাটা রিসেট' : 'Reset Demo Data'}
+                {lang === 'bn' ? 'ডেমো ডাটা রিসেট' : 'Reset Data'}
               </span>
             </button>
 
             <button
               type="button"
               onClick={() => setLang(lang === 'bn' ? 'en' : 'bn')}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#10283B] text-white text-[11px] sm:text-xs font-semibold"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#1E3540] text-white text-[11px] sm:text-xs font-semibold"
             >
-              <Globe className="w-3.5 h-3.5 text-[#F9C91D]" />
+              <Globe className="w-3.5 h-3.5 text-[#FAD814]" />
               <span>{lang === 'bn' ? 'EN' : 'বাংলা'}</span>
             </button>
 
             <Link
               href="/"
-              className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#F9C91D] text-[#10283B] text-[11px] sm:text-xs font-extrabold whitespace-nowrap"
+              className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#FAD814] text-[#10283B] text-[11px] sm:text-xs font-extrabold whitespace-nowrap"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>{lang === 'bn' ? 'সাইট' : 'Site'}</span>
             </Link>
+
+            <button
+              type="button"
+              onClick={handleAdminLogout}
+              className="inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-lg bg-[#EE2454] text-white text-[11px] sm:text-xs font-bold whitespace-nowrap"
+              title="Logout"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">{lang === 'bn' ? 'লগআউট' : 'Logout'}</span>
+            </button>
           </div>
         </header>
 
@@ -164,9 +356,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               onClick={() => setSidebarOpen(false)}
               className="fixed inset-0 bg-black/60"
             />
-            <div className="relative z-10 w-64 bg-[#10283B] text-white flex flex-col h-full">
+            <div className="relative z-10 w-64 bg-[#1E3540] text-white flex flex-col h-full">
               <div className="p-4 border-b border-white/10 flex items-center justify-between">
-                <span className="font-extrabold text-sm">{settings.brandName} Admin</span>
+                <BrandLogo href="/admin" compact />
                 <button
                   type="button"
                   onClick={() => setSidebarOpen(false)}
@@ -185,7 +377,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       onClick={() => setSidebarOpen(false)}
                       className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold ${
                         pathname === item.href
-                          ? 'bg-[#F9C91D] text-[#10283B]'
+                          ? 'bg-[#FAD814] text-[#10283B]'
                           : 'text-slate-200 hover:bg-white/10'
                       }`}
                     >
@@ -195,6 +387,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   );
                 })}
               </nav>
+              <div className="p-3 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={handleAdminLogout}
+                  className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-[#EE2454] text-white text-xs font-bold"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>{lang === 'bn' ? 'লগআউট করুন' : 'Logout'}</span>
+                </button>
+              </div>
             </div>
           </div>
         )}

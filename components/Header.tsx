@@ -45,7 +45,6 @@ export default function Header() {
     { href: '/booking/lookup', label: { bn: 'বুকিং খুঁজুন', en: 'Booking Lookup' } },
     { href: '/faq', label: { bn: 'সাধারণ জিজ্ঞাসা (FAQ)', en: 'FAQ' } },
     { href: '/customer/dashboard', label: { bn: 'গ্রাহক ড্যাশবোর্ড (ডেমো)', en: 'Customer Dashboard' } },
-    { href: '/admin/demo-login', label: { bn: 'অ্যাডমিন ডেমো প্যানেল', en: 'Admin Demo Panel' } },
   ];
 
   return (

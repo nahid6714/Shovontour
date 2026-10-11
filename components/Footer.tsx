@@ -421,11 +421,11 @@ export default function Footer() {
             </Link>
             <span aria-hidden="true">·</span>
             <Link
-              href="/admin/demo-login"
+              href="/admin"
               className="inline-flex items-center gap-1 text-slate-300 hover:text-[#F9C91D] transition-colors font-medium"
             >
               <Lock className="w-3 h-3" />
-              <span>Admin Demo</span>
+              <span>Admin</span>
             </Link>
           </div>
         </div>
