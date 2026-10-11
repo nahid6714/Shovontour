@@ -85,7 +85,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const STORAGE_KEYS = {
   LANG: 'shovon_demo_lang_v1',
-  PACKAGES: 'shovon_demo_packages_v1',
+  PACKAGES: 'shovon_demo_packages_v2',
   BOOKINGS: 'shovon_demo_bookings_v1',
   PAYMENTS: 'shovon_demo_payments_v1',
   INQUIRIES: 'shovon_demo_inquiries_v1',
@@ -184,7 +184,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const formatBdt = (amount: number): string => {
     if (lang === 'bn') {
-      return `৳${amount.toLocaleString('bn-BD')}`;
+      return `৳ ${amount.toLocaleString('bn-BD')}`;
     }
     return `BDT ${amount.toLocaleString('en-US')}`;
   };
